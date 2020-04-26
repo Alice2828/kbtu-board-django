@@ -11,20 +11,24 @@ from rest_framework.decorators import api_view, permission_classes
 class UsersList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-  #  permission_classes = (IsAuthenticated,)
+
+
+#  permission_classes = (IsAuthenticated,)
 
 
 class UserDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-   # permission_classes = (IsAuthenticated,)
+
+
+# permission_classes = (IsAuthenticated,)
 
 
 @api_view(['GET', 'POST'])
-#@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def teachers_list(request):
     if request.method == 'GET':
-        teachers = TeacherInfo.objects.all()
+        teachers = TeacherInfo.objects.filter(is_teaching=True)
         serializer = TeacherSerializer(teachers, many=True)
         return Response(serializer.data)
 
@@ -37,7 +41,7 @@ def teachers_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-#@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def teacher_detail(request, teacher_id):
     try:
         teacher = TeacherInfo.objects.get(id=teacher_id)

@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from users.views import UsersList
+from posts.views import PostsList, PostDetails
+from users.views import UsersList, teachers_list, teacher_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', UsersList.as_view()),
+    path('posts/', PostsList.as_view()),
+    path('posts/<int:pk>', PostDetails.as_view()),
+    path('teachers/', teachers_list),
+    path('teachers/<int:teacher_id>', teacher_detail),
 ]

@@ -11,10 +11,10 @@ from rest_framework.decorators import api_view, permission_classes
 class PostsList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticated,)
+  #  permission_classes = (IsAuthenticated,)
 
 
 class PostDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticated,)
+   # permission_classes = (IsAuthenticated,)
